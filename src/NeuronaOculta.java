@@ -4,7 +4,7 @@ import java.io.Serializable;
 public class NeuronaOculta implements Serializable
 {
     //private double bias = Math.random();
-    private double pesosEntrada[] = new double[3];
+    private double pesosEntrada[] = new double[9];
     private double valorProcesado;
     private static final long serialVersionUID = -5872621466725055203L;
    
@@ -13,7 +13,7 @@ public class NeuronaOculta implements Serializable
     {
         for(int i=0;i<this.pesosEntrada.length;i++)
         {
-            this.pesosEntrada[i] = Math.random();
+            this.pesosEntrada[i] = Math.random()/((i%3)+1);
         }
         System.out.println("\n====PESOS OCULTOS INICIALES====");
         for(int i=0;i<this.pesosEntrada.length;i++)

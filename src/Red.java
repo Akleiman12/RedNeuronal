@@ -10,12 +10,12 @@ import javax.swing.JTextArea;
 public class Red implements Serializable
 {
     //transient Scanner sc = new Scanner(System.in);
-    NeuronaEntrada capaEntrada[] = new NeuronaEntrada[3];
+    NeuronaEntrada capaEntrada[] = new NeuronaEntrada[9];
     NeuronaOculta capaOculta[] = new NeuronaOculta[4];
     NeuronaSalida capaSalida = new NeuronaSalida();
     private double pesosOcultos[];
-    private double bias = 2.71; //El número de DIOS Math.E
-    private double factorAprendizaje = 11.15; //0.15
+    private double bias = 2.73; //El número de DIOS Math.E
+    private double factorAprendizaje = 11;
     private double valorReal;
     private boolean primeraVez = false;
     ArchivoObjetos guardar = new ArchivoObjetos();
@@ -29,11 +29,18 @@ public class Red implements Serializable
         //guardar.crearArchivo(this);
     }
     
-    public void inicioPredecir(double precioMer, double valorCir, double volMer,JLabel exc, JLabel temp)
+    public void inicioPredecir(double[][] valores,JLabel exc, JLabel temp)
     {
-        this.capaEntrada[0].setEntrada(this.capaEntrada[0].normalizarPrecioMercado(precioMer));
-        this.capaEntrada[1].setEntrada(this.capaEntrada[1].normalizarValorCirculacion(valorCir));
-        this.capaEntrada[2].setEntrada(this.capaEntrada[2].normalizarVolumenMercado(volMer));
+        this.capaEntrada[0].setEntrada(this.capaEntrada[0].normalizarPrecioMercado(valores[0][0]));
+        this.capaEntrada[1].setEntrada(this.capaEntrada[1].normalizarPrecioMercado(valores[0][1]));
+        this.capaEntrada[2].setEntrada(this.capaEntrada[2].normalizarPrecioMercado(valores[0][2]));
+        this.capaEntrada[1].setEntrada(this.capaEntrada[1].normalizarValorCirculacion(valores[1][0]));
+        this.capaEntrada[4].setEntrada(this.capaEntrada[4].normalizarValorCirculacion(valores[1][1]));
+        this.capaEntrada[5].setEntrada(this.capaEntrada[5].normalizarValorCirculacion(valores[1][2]));
+        this.capaEntrada[2].setEntrada(this.capaEntrada[2].normalizarVolumenMercado(valores[2][0]));
+        this.capaEntrada[7].setEntrada(this.capaEntrada[7].normalizarVolumenMercado(valores[2][1]));
+        this.capaEntrada[8].setEntrada(this.capaEntrada[8].normalizarVolumenMercado(valores[2][2]));
+
         this.imprimirCapaEntrada();
         this.procesarInputs();
         this.imprimirCapaOculta();
@@ -45,12 +52,19 @@ public class Red implements Serializable
         temp.setVisible(true);
     }
     
-    public void inicioEntrenar(double precioMer, double valorCir, double volMer, double valorPredecir, JTextArea noticias)
+    public void inicioEntrenar(double[][] valores, double valorPredecir, JTextArea noticias)
     {
         boolean aux = false;
-        this.capaEntrada[0].setEntrada(this.capaEntrada[0].normalizarPrecioMercado(precioMer));
-        this.capaEntrada[1].setEntrada(this.capaEntrada[1].normalizarValorCirculacion(valorCir));
-        this.capaEntrada[2].setEntrada(this.capaEntrada[2].normalizarVolumenMercado(volMer));
+        this.capaEntrada[0].setEntrada(this.capaEntrada[0].normalizarPrecioMercado(valores[0][0]));
+        this.capaEntrada[1].setEntrada(this.capaEntrada[1].normalizarPrecioMercado(valores[0][1]));
+        this.capaEntrada[2].setEntrada(this.capaEntrada[2].normalizarPrecioMercado(valores[0][2]));
+        this.capaEntrada[1].setEntrada(this.capaEntrada[1].normalizarValorCirculacion(valores[1][0]));
+        this.capaEntrada[4].setEntrada(this.capaEntrada[4].normalizarValorCirculacion(valores[1][1]));
+        this.capaEntrada[5].setEntrada(this.capaEntrada[5].normalizarValorCirculacion(valores[1][2]));
+        this.capaEntrada[2].setEntrada(this.capaEntrada[2].normalizarVolumenMercado(valores[2][0]));
+        this.capaEntrada[7].setEntrada(this.capaEntrada[7].normalizarVolumenMercado(valores[2][1]));
+        this.capaEntrada[8].setEntrada(this.capaEntrada[8].normalizarVolumenMercado(valores[2][2]));
+        
         this.setValorReal(this.normalizarPrecioMercadoReal(valorPredecir));
         this.imprimirCapaEntrada();
         do
@@ -63,12 +77,12 @@ public class Red implements Serializable
             noticias.setText("=====================");
             noticias.setText("Error: "+Double.toString(this.toleranciaError()));
             System.out.println("\n\nEL ERROR DESNORMALIZADO ES: "+this.toleranciaError());
-            if((this.toleranciaError() < -0.5) || (this.toleranciaError() > 0.5))
+            if((this.toleranciaError() < -200) || (this.toleranciaError() > 200))
             {
                 System.out.println("\n============================ENTRENANDO LA RED============================");
                 this.entrenarRed();
             }
-            else if((this.toleranciaError() >= -0.5) && (this.toleranciaError() <= 0.5))
+            else if((this.toleranciaError() >= -200) && (this.toleranciaError() <= 200))
             {
                 aux = true;
             }
@@ -146,14 +160,14 @@ public class Red implements Serializable
     
     public double normalizarPrecioMercadoReal(double precioMerReal)
     {
-        return (precioMerReal-15.0)/(45-15);
+        return (precioMerReal-0)/(22300-0);
     }
     
     public double toleranciaError()
     {
         //return (this.capaSalida.getValorOutput() - (((45-15)*this.getValorReal()) + 15))/(((45-15)*this.getValorReal()) + 15);
         //return Math.pow((((45-15)*this.getValorReal()) + 15) - this.capaSalida.getValorOutput(), 2)/2
-        return this.capaSalida.getValorOutput() - (((45-15)*this.getValorReal()) + 15);
+        return this.capaSalida.getValorOutput() - (((22300-0)*this.getValorReal()) + 0);
     }
     
     public void entrenarRed()
@@ -204,109 +218,6 @@ public class Red implements Serializable
         System.out.println("\n=========PESOS MODIFICADOS=========");
         this.imprimirPesosEntrada();
     }
-    
-    /*public double derivadaSigmoide(double valor)
-    {
-        return (Math.pow(Math.E, -1*valor))/(Math.pow((1+Math.pow(Math.E, -1*valor)), 2));
-    }
-    
-    public void calcularPesosDelta(double deltaSumaSalida)
-    {
-        double[] pesosDelta = new double[this.capaOculta.length];
-        double[] nuevosPesosSalida = new double[this.capaSalida.getPesosSalida().length];
-        for(int i=0;i<pesosDelta.length;i++)
-        {
-            pesosDelta[i] = deltaSumaSalida/this.capaOculta[i].getValorProcesado();
-        }
-        for(int i=0;i<nuevosPesosSalida.length;i++)
-        {
-            nuevosPesosSalida[i] = this.capaSalida.getPesosSalida()[i] + pesosDelta[i];
-        }
-        System.out.println("\n====PESOS DE SALIDA ANTERIORES====");
-        this.capaSalida.imprimirPesosSalida();
-        this.capaSalida.setPesosSalida(nuevosPesosSalida);
-        System.out.println("\n====PESOS DE SALIDA MODIFICADOS====");
-        this.capaSalida.imprimirPesosSalida();
-    }
-    
-    public double[] calcularSumaOcultaDelta(double deltaSumaSalida, double[] pesosSalida)
-    {
-        double sumaOcultaDelta[] = new double[pesosSalida.length];
-        double vecAux[] = new double[pesosSalida.length];
-        double vecAux2[] = new double[pesosSalida.length];
-        for(int i=0;i<pesosSalida.length;i++)
-        {
-            vecAux[i] = deltaSumaSalida/pesosSalida[i];
-        }
-        for(int i=0;i<this.capaOculta.length;i++)
-        {
-            vecAux2[i] = this.derivadaSigmoide(this.capaOculta[i].sumaPonderada(this.capaEntrada, this.bias));
-        }
-        for(int i=0;i<vecAux.length;i++)
-        {
-            sumaOcultaDelta[i] = vecAux[i] * vecAux2[i];
-        }
-        return sumaOcultaDelta;
-    }
-    
-    public void calcularPesosOcultos(double deltaSumaSalida, double[] pesosSalida)
-    {
-        double[] sumaOcultaDelta = this.calcularSumaOcultaDelta(deltaSumaSalida, pesosSalida);
-        double[] pesosDelta = new double[sumaOcultaDelta.length*this.capaEntrada.length];
-        double[] pesosDeltaCalculados = new double[pesosDelta.length];
-        int cont = 0, i = 0;
-        while(cont < pesosDelta.length)
-        {
-            for(int j=0;j<sumaOcultaDelta.length;j++)
-            {
-                pesosDelta[cont] = sumaOcultaDelta[j]/this.capaEntrada[i].getEntrada();
-                cont++;
-            }
-            i++;
-        }
-        this.pesosOcultos();
-        for(int x=0;x<this.pesosOcultos.length;x++)
-        {
-            pesosDeltaCalculados[x] = this.pesosOcultos[x] + pesosDelta[x];
-        }
-        System.out.println("\n====PESOS OCULTOS ANTERIORES====");
-        for(int x=0;x<this.capaOculta.length;x++)
-        {
-            for(int y=0;y<this.capaOculta[x].getPesosEntrada().length;y++)
-            {
-                System.out.print("\nNeurona "+x+": ["+this.capaOculta[x].getPesosEntrada()[y]+"]");
-            }
-        }
-        for(int x=0;x<this.capaOculta.length;x++)
-        {
-            this.capaOculta[x].setPesosEntrada(Arrays.copyOfRange(pesosDeltaCalculados, ((x)*(pesosDeltaCalculados.length/this.capaOculta.length)), ((x+1)*(pesosDeltaCalculados.length/this.capaOculta.length))));
-        }
-        System.out.println("\n====PESOS OCULTOS MODIFICADOS====");
-        for(int x=0;x<this.capaOculta.length;x++)
-        {
-            for(int y=0;y<this.capaOculta[x].getPesosEntrada().length;y++)
-            {
-                System.out.print("\nNeurona "+x+": ["+this.capaOculta[x].getPesosEntrada()[y]+"]");
-            }
-        }
-    }
-    
-    public void pesosOcultos()
-    {
-        this.pesosOcultos = new double[this.capaOculta.length*this.capaEntrada.length];
-        int cont = 0;
-        while(cont < pesosOcultos.length)
-        {
-            for(int i=0;i<this.capaOculta.length;i++)
-            {
-                for(int j=0;j<this.capaOculta[i].getPesosEntrada().length;j++)
-                {
-                    pesosOcultos[cont] = this.capaOculta[i].getPesosEntrada()[j];
-                    cont++;
-                }
-            }
-        }
-    }*/
 
     public double getValorReal() {
         return valorReal;

@@ -41,7 +41,7 @@ public class NeuronaSalida implements Serializable
     
     public double desnormalizarSalida(double outputSigmoide)
     {
-        return ((45-15)*outputSigmoide) + 15;
+        return ((22300-0)*outputSigmoide) + 0;
     }
     
     public void imprimirPesosSalida()

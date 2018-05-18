@@ -5,20 +5,21 @@ public class NeuronaEntrada implements Serializable
 {
     private double entrada;
     private static final long serialVersionUID = 6064116028311586287L;
+
     
     public double normalizarPrecioMercado(double precioMer)
     {
-        return (precioMer-15.0)/(45-15);
+        return (precioMer-0)/(22300-0);
     }
     
     public double normalizarValorCirculacion(double valorCir)
     {
-        return (valorCir-0)/(100-0);
+        return (valorCir-0)/(323071829482L-0);
     }
     
     public double normalizarVolumenMercado(double volMer)
     {
-        return (volMer-1)/(50-1);
+        return (volMer-0)/(1422424551L-0);
     }
 
     public double getEntrada() {

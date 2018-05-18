@@ -9,6 +9,7 @@ public class GUIRed extends javax.swing.JFrame
     
     NeuralNetwork net;
     Red cerebro = new Red();
+    double[][] initialValues = new double[3][3];
 
     public GUIRed() throws Exception 
     {
@@ -30,9 +31,9 @@ public class GUIRed extends javax.swing.JFrame
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        precioMercado = new javax.swing.JTextField();
-        valorCirculacion = new javax.swing.JTextField();
-        volumenMercado = new javax.swing.JTextField();
+        precioMercado1 = new javax.swing.JTextField();
+        valorCirculacion1 = new javax.swing.JTextField();
+        volumenMercado1 = new javax.swing.JTextField();
         botonPredecir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         noticias = new javax.swing.JTextArea();
@@ -41,6 +42,22 @@ public class GUIRed extends javax.swing.JFrame
         jLabel7 = new javax.swing.JLabel();
         valorAPredecir = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        volumenMercado2 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        valorCirculacion2 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        precioMercado2 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        volumenMercado3 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        valorCirculacion3 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        precioMercado3 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 255));
@@ -54,28 +71,34 @@ public class GUIRed extends javax.swing.JFrame
 
         jLabel4.setText("Volumen de cambios en las bolsas principales de BTC (USD)");
 
-        precioMercado.addMouseListener(new java.awt.event.MouseAdapter() {
+        precioMercado1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                precioMercadoMouseClicked(evt);
+                precioMercado1MouseClicked(evt);
             }
         });
 
-        valorCirculacion.addMouseListener(new java.awt.event.MouseAdapter() {
+        valorCirculacion1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                valorCirculacionMouseClicked(evt);
+                valorCirculacion1MouseClicked(evt);
             }
         });
 
-        volumenMercado.addMouseListener(new java.awt.event.MouseAdapter() {
+        volumenMercado1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                volumenMercadoMouseClicked(evt);
+                volumenMercado1MouseClicked(evt);
             }
         });
 
+        botonPredecir.setBackground(new java.awt.Color(255, 153, 0));
         botonPredecir.setText("Predecir");
         botonPredecir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonPredecirMouseClicked(evt);
+            }
+        });
+        botonPredecir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonPredecirActionPerformed(evt);
             }
         });
 
@@ -98,72 +121,190 @@ public class GUIRed extends javax.swing.JFrame
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(255, 153, 51));
         jButton1.setText("Entrenar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("n-1");
+
+        jLabel6.setText("n-1");
+
+        jLabel8.setText("n-1");
+
+        jLabel9.setText("n");
+
+        volumenMercado2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                volumenMercado2MouseClicked(evt);
+            }
+        });
+
+        jLabel10.setText("n-2");
+
+        valorCirculacion2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                valorCirculacion2MouseClicked(evt);
+            }
+        });
+
+        jLabel11.setText("n-2");
+
+        precioMercado2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                precioMercado2MouseClicked(evt);
+            }
+        });
+
+        jLabel12.setText("n-2");
+
+        volumenMercado3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                volumenMercado3MouseClicked(evt);
+            }
+        });
+
+        jLabel13.setText("n-3");
+
+        valorCirculacion3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                valorCirculacion3MouseClicked(evt);
+            }
+        });
+
+        jLabel14.setText("n-3");
+
+        precioMercado3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                precioMercado3MouseClicked(evt);
+            }
+        });
+
+        jLabel15.setText("n-3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(245, 245, 245)
+                .addComponent(labelExclamacion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelValorPredecido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelExclamacion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelValorPredecido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(valorAPredecir)
+                                        .addComponent(volumenMercado1)
+                                        .addComponent(valorCirculacion1)
+                                        .addComponent(precioMercado1, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel8))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(botonPredecir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel2)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jLabel4)
-                                                .addComponent(jLabel7)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(valorAPredecir)
-                                            .addComponent(volumenMercado)
-                                            .addComponent(valorCirculacion)
-                                            .addComponent(precioMercado, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)))
-                                    .addComponent(jLabel1)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jLabel12)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(volumenMercado2)
+                                        .addComponent(valorCirculacion2)
+                                        .addComponent(precioMercado2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel10))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(volumenMercado3)
+                                        .addComponent(valorCirculacion3)
+                                        .addComponent(precioMercado3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel13)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonPredecir, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(precioMercado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(valorCirculacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(volumenMercado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(precioMercado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(valorCirculacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(volumenMercado1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(precioMercado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(valorCirculacion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(volumenMercado2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(precioMercado3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(valorCirculacion3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(volumenMercado3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(7, 7, 7)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(valorAPredecir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonPredecir)
                     .addComponent(jButton1))
@@ -180,34 +321,65 @@ public class GUIRed extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonPredecirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonPredecirMouseClicked
-        if("".equals(this.precioMercado.getText()) || "".equals(this.valorCirculacion.getText()) || "".equals(this.volumenMercado.getText()))
+            if("".equals(this.precioMercado1.getText()) || "".equals(this.precioMercado2.getText()) || "".equals(this.precioMercado3.getText()) || "".equals(this.valorCirculacion1.getText()) || "".equals(this.valorCirculacion2.getText()) || "".equals(this.valorCirculacion3.getText()) || "".equals(this.volumenMercado1.getText()) || "".equals(this.volumenMercado2.getText()) || "".equals(this.volumenMercado3.getText()))
         {
-            JOptionPane.showMessageDialog(null, "Debes introducir la temperatura media, la humedad relativa y la velocidad del viento", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos, excepto el de prediccion", "Alert", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
+            this.initialValues[0][0] = Double.parseDouble(this.precioMercado1.getText());
+            this.initialValues[0][1] = Double.parseDouble(this.precioMercado2.getText());
+            this.initialValues[0][2] = Double.parseDouble(this.precioMercado3.getText());
+            this.initialValues[1][0] = Double.parseDouble(this.valorCirculacion1.getText());
+            this.initialValues[1][1] = Double.parseDouble(this.valorCirculacion2.getText());
+            this.initialValues[1][2] = Double.parseDouble(this.valorCirculacion3.getText());
+            this.initialValues[2][0] = Double.parseDouble(this.volumenMercado1.getText());
+            this.initialValues[2][1] = Double.parseDouble(this.volumenMercado2.getText());
+            this.initialValues[2][2] = Double.parseDouble(this.volumenMercado3.getText());
             System.out.println("BIAS: "+this.cerebro.getBias());
-            this.cerebro.inicioPredecir(Double.parseDouble(this.precioMercado.getText()), Double.parseDouble(this.valorCirculacion.getText()), Double.parseDouble(this.volumenMercado.getText()),this.labelExclamacion, this.labelValorPredecido);
-            this.precioMercado.setText("");
-            this.valorCirculacion.setText("");
-            this.volumenMercado.setText("");
+            this.cerebro.inicioPredecir(this.initialValues,this.labelExclamacion, this.labelValorPredecido);
+            this.precioMercado1.setText("");
+            this.precioMercado2.setText("");
+            this.precioMercado3.setText("");
+            this.valorCirculacion1.setText("");
+            this.valorCirculacion2.setText("");
+            this.valorCirculacion3.setText("");
+            this.volumenMercado1.setText("");
+            this.volumenMercado2.setText("");
+            this.volumenMercado3.setText("");
             this.noticias.setText("");
         }
     }//GEN-LAST:event_botonPredecirMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        if("".equals(this.precioMercado.getText()) || "".equals(this.valorCirculacion.getText()) || "".equals(this.volumenMercado.getText()) || "".equals(this.valorAPredecir.getText()))
+        if("".equals(this.precioMercado1.getText()) || "".equals(this.precioMercado2.getText()) || "".equals(this.precioMercado3.getText()) || "".equals(this.valorCirculacion1.getText()) || "".equals(this.valorCirculacion2.getText()) || "".equals(this.valorCirculacion3.getText()) || "".equals(this.volumenMercado1.getText()) || "".equals(this.volumenMercado2.getText()) || "".equals(this.volumenMercado3.getText()) || "".equals(this.valorAPredecir.getText()))
         {
-            JOptionPane.showMessageDialog(null, "Debes introducir la temperatura media, la humedad relativa, la velocidad del viento y la temperatura a predecir", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos.", "Alert", JOptionPane.ERROR_MESSAGE);
         }
         else
         {
-            this.cerebro.inicioEntrenar(Double.parseDouble(this.precioMercado.getText()), Double.parseDouble(this.valorCirculacion.getText()), Double.parseDouble(this.volumenMercado.getText()), Double.parseDouble(this.valorAPredecir.getText()), this.noticias);
-            this.precioMercado.setText("");
-            this.valorCirculacion.setText("");
-            this.volumenMercado.setText("");
+            this.initialValues[0][0] = Double.parseDouble(this.precioMercado1.getText());
+            this.initialValues[0][1] = Double.parseDouble(this.precioMercado2.getText());
+            this.initialValues[0][2] = Double.parseDouble(this.precioMercado3.getText());
+            this.initialValues[1][0] = Double.parseDouble(this.valorCirculacion1.getText());
+            this.initialValues[1][1] = Double.parseDouble(this.valorCirculacion2.getText());
+            this.initialValues[1][2] = Double.parseDouble(this.valorCirculacion3.getText());
+            this.initialValues[2][0] = Double.parseDouble(this.volumenMercado1.getText());
+            this.initialValues[2][1] = Double.parseDouble(this.volumenMercado2.getText());
+            this.initialValues[2][2] = Double.parseDouble(this.volumenMercado3.getText());
+            this.cerebro.inicioEntrenar(this.initialValues, Double.parseDouble(this.valorAPredecir.getText()), this.noticias);
+            this.precioMercado1.setText("");
+            this.precioMercado2.setText("");
+            this.precioMercado3.setText("");
+            this.valorCirculacion1.setText("");
+            this.valorCirculacion2.setText("");
+            this.valorCirculacion3.setText("");
+            this.volumenMercado1.setText("");
+            this.volumenMercado2.setText("");
+            this.volumenMercado3.setText("");
             this.valorAPredecir.setText("");
             JOptionPane.showMessageDialog(null, "La red ha finalizado de entrenarse");
+            
             /*try {
                 net.guardar.crearArchivo(net.getCerebro());
             } catch (IOException ex) {
@@ -221,20 +393,52 @@ public class GUIRed extends javax.swing.JFrame
         this.labelValorPredecido.setVisible(false);
     }//GEN-LAST:event_valorAPredecirMouseClicked
 
-    private void precioMercadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_precioMercadoMouseClicked
+    private void precioMercado1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_precioMercado1MouseClicked
         this.labelExclamacion.setVisible(false);
         this.labelValorPredecido.setVisible(false);
-    }//GEN-LAST:event_precioMercadoMouseClicked
+    }//GEN-LAST:event_precioMercado1MouseClicked
 
-    private void valorCirculacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_valorCirculacionMouseClicked
+    private void valorCirculacion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_valorCirculacion1MouseClicked
         this.labelExclamacion.setVisible(false);
         this.labelValorPredecido.setVisible(false);
-    }//GEN-LAST:event_valorCirculacionMouseClicked
+    }//GEN-LAST:event_valorCirculacion1MouseClicked
 
-    private void volumenMercadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volumenMercadoMouseClicked
+    private void volumenMercado1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volumenMercado1MouseClicked
         this.labelExclamacion.setVisible(false);
         this.labelValorPredecido.setVisible(false);
-    }//GEN-LAST:event_volumenMercadoMouseClicked
+    }//GEN-LAST:event_volumenMercado1MouseClicked
+
+    private void volumenMercado2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volumenMercado2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_volumenMercado2MouseClicked
+
+    private void valorCirculacion2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_valorCirculacion2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valorCirculacion2MouseClicked
+
+    private void precioMercado2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_precioMercado2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_precioMercado2MouseClicked
+
+    private void volumenMercado3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_volumenMercado3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_volumenMercado3MouseClicked
+
+    private void valorCirculacion3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_valorCirculacion3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valorCirculacion3MouseClicked
+
+    private void precioMercado3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_precioMercado3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_precioMercado3MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void botonPredecirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPredecirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonPredecirActionPerformed
 
     public static void main(String args[]) 
     {
@@ -275,19 +479,35 @@ public class GUIRed extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonPredecir;
-    private javax.swing.JTextField valorCirculacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelExclamacion;
     private javax.swing.JLabel labelValorPredecido;
     private javax.swing.JTextArea noticias;
+    private javax.swing.JTextField precioMercado1;
+    private javax.swing.JTextField precioMercado2;
+    private javax.swing.JTextField precioMercado3;
     private javax.swing.JTextField valorAPredecir;
-    private javax.swing.JTextField precioMercado;
-    private javax.swing.JTextField volumenMercado;
+    private javax.swing.JTextField valorCirculacion1;
+    private javax.swing.JTextField valorCirculacion2;
+    private javax.swing.JTextField valorCirculacion3;
+    private javax.swing.JTextField volumenMercado1;
+    private javax.swing.JTextField volumenMercado2;
+    private javax.swing.JTextField volumenMercado3;
     // End of variables declaration//GEN-END:variables
 }
