@@ -34,10 +34,10 @@ public class Red implements Serializable
         this.capaEntrada[0].setEntrada(this.capaEntrada[0].normalizarPrecioMercado(valores[0][0]));
         this.capaEntrada[1].setEntrada(this.capaEntrada[1].normalizarPrecioMercado(valores[0][1]));
         this.capaEntrada[2].setEntrada(this.capaEntrada[2].normalizarPrecioMercado(valores[0][2]));
-        this.capaEntrada[1].setEntrada(this.capaEntrada[1].normalizarValorCirculacion(valores[1][0]));
+        this.capaEntrada[3].setEntrada(this.capaEntrada[3].normalizarValorCirculacion(valores[1][0]));
         this.capaEntrada[4].setEntrada(this.capaEntrada[4].normalizarValorCirculacion(valores[1][1]));
         this.capaEntrada[5].setEntrada(this.capaEntrada[5].normalizarValorCirculacion(valores[1][2]));
-        this.capaEntrada[2].setEntrada(this.capaEntrada[2].normalizarVolumenMercado(valores[2][0]));
+        this.capaEntrada[6].setEntrada(this.capaEntrada[6].normalizarVolumenMercado(valores[2][0]));
         this.capaEntrada[7].setEntrada(this.capaEntrada[7].normalizarVolumenMercado(valores[2][1]));
         this.capaEntrada[8].setEntrada(this.capaEntrada[8].normalizarVolumenMercado(valores[2][2]));
 
@@ -58,10 +58,10 @@ public class Red implements Serializable
         this.capaEntrada[0].setEntrada(this.capaEntrada[0].normalizarPrecioMercado(valores[0][0]));
         this.capaEntrada[1].setEntrada(this.capaEntrada[1].normalizarPrecioMercado(valores[0][1]));
         this.capaEntrada[2].setEntrada(this.capaEntrada[2].normalizarPrecioMercado(valores[0][2]));
-        this.capaEntrada[1].setEntrada(this.capaEntrada[1].normalizarValorCirculacion(valores[1][0]));
+        this.capaEntrada[3].setEntrada(this.capaEntrada[3].normalizarValorCirculacion(valores[1][0]));
         this.capaEntrada[4].setEntrada(this.capaEntrada[4].normalizarValorCirculacion(valores[1][1]));
         this.capaEntrada[5].setEntrada(this.capaEntrada[5].normalizarValorCirculacion(valores[1][2]));
-        this.capaEntrada[2].setEntrada(this.capaEntrada[2].normalizarVolumenMercado(valores[2][0]));
+        this.capaEntrada[6].setEntrada(this.capaEntrada[6].normalizarVolumenMercado(valores[2][0]));
         this.capaEntrada[7].setEntrada(this.capaEntrada[7].normalizarVolumenMercado(valores[2][1]));
         this.capaEntrada[8].setEntrada(this.capaEntrada[8].normalizarVolumenMercado(valores[2][2]));
         
